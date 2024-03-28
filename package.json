@@ -1,6 +1,6 @@
 {
   "name": "itty-router",
-  "version": "5.0.0-next.1",
+  "version": "5.0.0-next.2",
   "description": "A tiny, zero-dependency router, designed to make beautiful APIs in any environment.",
   "main": "./index.js",
   "module": "./index.mjs",
@@ -75,11 +75,6 @@
       "import": "./text.mjs",
       "require": "./text.js",
       "types": "./text.d.ts"
-    },
-    "./types": {
-      "import": "./types.mjs",
-      "require": "./types.js",
-      "types": "./types.d.ts"
     },
     "./webp": {
       "import": "./webp.mjs",
