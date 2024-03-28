@@ -10,6 +10,7 @@ export default defineConfig({
         '**/example/**',
         '**/lib/**',
         'src/index.ts',
+        'src/types.d.ts',
         'src/websocket.ts',
       ],
     },

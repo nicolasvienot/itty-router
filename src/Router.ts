@@ -1,28 +1,10 @@
 import {
   IRequest,
-  IttyRouterOptions,
-  IttyRouterType,
   RequestHandler,
-  RequestLike
-} from './IttyRouter'
-
-export type ResponseHandler<ResponseType = Response, RequestType = IRequest, Args extends any[] = any[]> =
-    (response: ResponseType & any, request: RequestType & any, ...args: Args) => any
-
-export type ErrorHandler<ErrorType = Error, RequestType = IRequest, Args extends any[] = any[]> =
-    (response: ErrorType, request: RequestType, ...args: Args) => any
-
-export type RouterType<R = IRequest, Args extends any[] = any[]> = {
-  before?: RequestHandler<any>[]
-  catch?: ErrorHandler
-  finally?: ResponseHandler[]
-} & IttyRouterType<R, Args>
-
-export type RouterOptions = {
-  before?: RequestHandler<any>[]
-  catch?: ErrorHandler
-  finally?: ResponseHandler[]
-} & IttyRouterOptions
+  RequestLike,
+  RouterOptions,
+  RouterType
+} from './types'
 
 export const Router = <
   RequestType = IRequest,
