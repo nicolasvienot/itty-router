@@ -25,6 +25,7 @@ export const IttyRouter = <
                 .replace(/\./g, '\\.')                              // dot in path
                 .replace(/(\/?)\*/g, '($1.*)?')                     // wildcard
               }/*$`),
+              // @ts-ignore
               handlers,                                             // embed handlers
               path,                                                 // embed clean route path
             ]
