@@ -76,6 +76,11 @@
       "require": "./text.js",
       "types": "./text.d.ts"
     },
+    "./types": {
+      "import": "./types.mjs",
+      "require": "./types.js",
+      "types": "./types.d.ts"
+    },
     "./webp": {
       "import": "./webp.mjs",
       "require": "./webp.js",

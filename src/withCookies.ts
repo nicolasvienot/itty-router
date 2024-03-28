@@ -1,4 +1,4 @@
-import { IRequest } from './IttyRouter'
+import { IRequest } from './types'
 
 type KVPair = [string, string?]
 

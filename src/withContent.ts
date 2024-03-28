@@ -1,8 +1,4 @@
-import { IRequest, IRequestStrict } from './IttyRouter'
-
-export type HasContent<ContentType> = {
-  content: ContentType
-} & IRequestStrict
+import { IRequest } from './types'
 
 // withContent - embeds any request body as request.content
 export const withContent = async (request: IRequest): Promise<void> => {
