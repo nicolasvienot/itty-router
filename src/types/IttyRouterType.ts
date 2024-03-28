@@ -1,8 +1,9 @@
-import { CustomRoutes } from './CustomRoutes'
+import { GenericTraps } from './GenericTraps'
 import { IRequest } from './IRequest'
 import { RequestLike } from './RequestLike'
 import { Route } from './Route'
 import { RouteEntry } from './RouteEntry'
+import { CustomRoutes } from './CustomRoutes'
 
 export type IttyRouterType<R = IRequest, A extends any[] = any[], Output = any> = {
   __proto__: IttyRouterType<R>
@@ -16,4 +17,4 @@ export type IttyRouterType<R = IRequest, A extends any[] = any[], Output = any> 
   patch: Route<R, A>
   post: Route<R, A>
   put: Route<R, A>
-} & CustomRoutes<Route<R, A>>
+} & CustomRoutes<Route<R, A>> & GenericTraps

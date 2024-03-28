@@ -1,4 +1,4 @@
-import { IRequestStrict, IRequest, RequestHandler } from 'types'
+import { IRequestStrict, IRequest, RequestHandler } from '../../src/types'
 import { IttyRouter } from 'IttyRouter'
 
 type UserRequest = {

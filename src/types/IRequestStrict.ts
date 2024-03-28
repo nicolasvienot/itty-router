@@ -1,6 +1,4 @@
 export type IRequestStrict = {
-  method: string
-  url: string
   route: string
   params: {
     [key: string]: string
