@@ -13,10 +13,10 @@
     <img src="https://edge.bundlejs.com/?q=itty-router/Router&badge&badge-style=flat-square" alt="bundle size" />
   </a>
   <a href="https://github.com/kwhitley/itty-router/actions/workflows/verify.yml" target="_blank">
-    <img src="https://img.shields.io/github/actions/workflow/status/kwhitley/itty-router/verify.yml?branch=v4.x&style=flat-square" alt="build status" />
+    <img src="https://img.shields.io/github/actions/workflow/status/kwhitley/itty-router/verify.yml?branch=v5.x&style=flat-square" alt="build status" />
   </a>
-  <a href="https://coveralls.io/github/kwhitley/itty-router?branch=v4.x" target="_blank">
-    <img src="https://img.shields.io/coveralls/github/kwhitley/itty-router/v4.x?style=flat-square" alt="code coverage" />
+  <a href="https://coveralls.io/github/kwhitley/itty-router?branch=v5.x" target="_blank">
+    <img src="https://img.shields.io/coveralls/github/kwhitley/itty-router/v5.x?style=flat-square" alt="code coverage" />
   </a>
   <a href="https://npmjs.com/package/itty-router" target="_blank">
     <img src="https://img.shields.io/npm/dw/itty-router?style=flat-square" alt="weekly downloads" />
@@ -47,19 +47,16 @@
 
 An ultra-tiny API microrouter, for use when [size matters](https://github.com/TigersWay/cloudflare-playground) (e.g. [Cloudflare Workers](https://developers.cloudflare.com/workers/)).
 
-
-
-
 ## Features
 
 - Tiny. Routers from [~450 bytes](https://itty.dev/itty-router/routers/ittyrouter) to a [~970 bytes](https://itty.dev/itty-router/routers/autorouter) batteries-included version (~240-500x smaller than Express.js).
+- [TypeScript](https://itty.dev/itty-router/typescript). Powerfully (and flexibly) typed for any environment.
+- [Route-parsing](https://itty.dev/itty-router/route-patterns) & [query parsing](https://itty.dev/itty-router/route-patterns#query).
+- [Middleware](https://itty.dev/itty-router/middleware). Use ours or write your own.
+- [100% Test Coverage](https://coveralls.io/github/kwhitley/itty-router?branch=v5.x). Bulletproof for production peace-of-mind.
 - Web Standards. Use it [anywhere, in any environment](https://itty.dev/itty-router/runtimes).
 - No assumptions. Return anything; pass in anything.
-- Dead-simple user-code.  We want _your_ code to be tiny too.
 - Future-proof.  HTTP methods not-yet-invented already work with it.
-- [Route-parsing](https://itty.dev/itty-router/route-patterns) & [query parsing](https://itty.dev/itty-router/route-patterns#query).
-- [Middleware](https://itty.dev/itty-router/middleware) - use ours or write your own.
-- [Supports Nesting](https://itty.dev/itty-router/nesting).
 
 ## Example
 

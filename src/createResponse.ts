@@ -1,15 +1,9 @@
-export interface ResponseFormatter {
-  (body?: any, options?: ResponseInit): Response
-}
-
-export interface BodyTransformer {
-  (body: any): string
-}
+import { ResponseFormatter } from './types'
 
  export const createResponse =
   (
     format = 'text/plain; charset=utf-8',
-    transform?: BodyTransformer
+    transform?: (body: any) => any,
   ): ResponseFormatter =>
   (body, { ...options } = {}) => {
     if (body === undefined || body instanceof Response) return body

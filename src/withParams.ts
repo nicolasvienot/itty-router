@@ -1,4 +1,4 @@
-import { IRequest } from './IttyRouter'
+import { IRequest } from './types'
 
 export const withParams = (request: IRequest): void => {
   request.proxy = new Proxy(request.proxy || request, {

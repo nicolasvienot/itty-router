@@ -1,16 +1,5 @@
 import { json } from './json'
-
-interface ErrorLike extends Error {
-  status?: number
-  [any: string]: any
-}
-
-export type ErrorBody = string | object
-
-export interface ErrorFormatter {
-  (statusCode?: number, body?: ErrorBody): Response
-  (error: ErrorLike): Response
-}
+import { ErrorFormatter } from './types'
 
 const getMessage = (code: number): string => ({
   400: 'Bad Request',
@@ -20,7 +9,7 @@ const getMessage = (code: number): string => ({
   500: 'Internal Server Error',
 })[code] || 'Unknown Error'
 
-export const error: ErrorFormatter = (a = 500, b?: ErrorBody) => {
+export const error: ErrorFormatter = (a = 500, b?) => {
   // handle passing an Error | StatusError directly in
   if (a instanceof Error) {
     const { message, ...err } = a

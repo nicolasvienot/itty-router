@@ -1,15 +1,9 @@
-import { RequestHandler } from 'IttyRouter'
-import { ResponseHandler, Router, RouterOptions } from './Router'
+import { Router } from './Router'
 import { error } from './error'
 import { json } from './json'
+import { AutoRouterOptions } from './types'
 import { withParams } from './withParams'
 
-type AutoRouterOptions = {
-  missing?: RequestHandler
-  format?: ResponseHandler
-} & RouterOptions
-
-// MORE FINE-GRAINED/SIMPLIFIED CONTROL, BUT CANNOT FULLY REPLACE BEFORE/FINALLY STAGES
 export const AutoRouter = ({
   format = json,
   missing = () => error(404),
@@ -29,14 +23,3 @@ export const AutoRouter = ({
   ],
   ...options,
 })
-
-// LESS FINE-GRAINED CONTROL, BUT CAN COMPLETELY REPLACE BEFORE/FINALLY STAGES
-// export const AutoRouter2 = ({ ...options }: RouterOptions = {}) => Router({
-//   before: [withParams],
-//   onError: [error],
-//   finally: [
-//     (r: any) => r ?? error(404),
-//     json,
-//   ],
-//   ...options,
-// })
