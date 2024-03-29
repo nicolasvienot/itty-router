@@ -5,33 +5,37 @@ type UserRequest = {
   user: string
 } & IRequestStrict
 
-const router = IttyRouter()
+const router = IttyRouter<IRequestStrict>()
 
-const withUser: RequestHandler<UserRequest> = (request) => {
+const withUser: RequestHandler = (request) => {
   request.user = 'Kevin'
 }
 
 router
   // upstream request sees the request as IRequest (default), so anything goes
   .get('/', (request) => {
-    request.user = 123 // allowed because IRequest
+    request.user = 123 // not OK
   })
 
   // then we add the middleware defined above as <UserRequest>
-  .all('*', withUser)
-
-  // and now downstream requests expect a UserRequest
-  .get('/', (request) => {
-    request.user = 123  // NOT VALID
+  .all('*', withUser, (request) => {
+    request.user = 'Kevin'
+    request.user = 123  // NOT ok
   })
 
   // and if we ever need to restore control, add the generic back in
-  .get<IRequest>('/', (request) => {
-    request.user = 123 // now this is ok
+  .get<UserRequest, []>('/', (request) => {
+    request.user = 'Kevin'
+    request.user = 123  // NOT ok
   })
 
   .get('/', (request) => {
-    request.user = 123 // and so is this
+    request.user = 'Kevin' // still ok
+    request.user = 123  // NOT ok
+  })
+
+  router.get('/', (request) => {
+    request.user = 123 // NOT ok
   })
 
 export default router

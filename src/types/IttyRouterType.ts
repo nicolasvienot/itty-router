@@ -5,10 +5,10 @@ import { Route } from './Route'
 import { RouteEntry } from './RouteEntry'
 import { CustomRoutes } from './CustomRoutes'
 
-export type IttyRouterType<R = IRequest, A extends any[] = any[], Output = any> = {
+export type IttyRouterType<R = IRequest, A extends any[] = any[], ResponseType = any> = {
   __proto__: IttyRouterType<R>
   routes: RouteEntry[]
-  fetch: <Args extends any[] = A>(request: RequestLike, ...extra: Args) => Promise<Output>
+  fetch: <Args extends any[] = A>(request: RequestLike, ...extra: Args) => Promise<ResponseType>
   all: Route<R, A>
   delete: Route<R, A>
   get: Route<R, A>

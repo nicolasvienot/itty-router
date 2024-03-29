@@ -4,10 +4,10 @@ import { RequestHandler } from './RequestHandler'
 
 export type Route<
   R = IRequest,
-  A extends Array<any> = any[]
+  A extends Array<any> = any[],
 > = <
   RequestType = R,
-  Args extends Array<any> = A
+  Args extends Array<any> = A,
 >(
   path: string,
   ...handlers: RequestHandler<RequestType, Args>[]
