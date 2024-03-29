@@ -17,6 +17,10 @@ autorouter.get('/throw', (a) => a.b.c)
 router.get('/throw', (a) => a.b.c)
 ittyrouter.get('/throw', (a) => a.b.c)
 
+// autorouter tests
+autorouter.missing
+autorouter.format
+
 // test response formatting
 const autorouterResponse = (await autorouter.fetch(request)).foo
 const routerResponse = (await router.fetch(request)).foo
