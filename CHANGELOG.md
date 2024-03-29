@@ -1,5 +1,8 @@
 ## Changelog
 
+- **v5.0.2**
+  - fixed: AutoRouter was missing the router-level generics support of the other 2 routers.
+  - fixed: All 3 routers had their 3rd generic argument, ResponseType added per the spec.
 - **v5.0.0**
   - BREAKING: router.fetch replaces router.handle (now deprecated)
   - BREAKING: "createCors" has been deprecated in favor of "cors" (new options & requirements)
