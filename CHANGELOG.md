@@ -1,6 +1,6 @@
 ## Changelog
 
-- **v5.0.3**
+- **v5.0.4**
   - fixed: (TypeScript) middleware corrupting downstream request types and args
 - **v5.0.2**
   - fixed: AutoRouter was missing the router-level generics support of the other 2 routers.
