@@ -1,5 +1,6 @@
 // routers
 export * from './types/AutoRouterOptions'
+export * from './types/AutoRouterType'
 export * from './types/CustomRoutes'
 export * from './types/ErrorHandler'
 export * from './types/IRequest'
