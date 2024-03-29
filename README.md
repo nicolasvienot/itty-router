@@ -41,7 +41,7 @@
   </a>
 </p>
 
-###  [v5.x Documentation](https://itty.dev/itty-router) &nbsp; | &nbsp; [Discord](https://discord.gg/53vyrZAu9u)
+###  [v5 Documentation](https://itty.dev/itty-router) &nbsp;| &nbsp; [v4 -> v5 Migration Guide](https://itty.dev/itty-router/migrations/v4-v5) &nbsp;| &nbsp; [Discord](https://discord.gg/53vyrZAu9u) 
 
 ---
 
