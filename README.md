@@ -54,7 +54,7 @@ An ultra-tiny API microrouter, for use when [size matters](https://github.com/Ti
 - [Route-parsing](https://itty.dev/itty-router/route-patterns) & [query parsing](https://itty.dev/itty-router/query-params).
 - [Middleware](https://itty.dev/itty-router/middleware). Use ours or write your own.
 - [100% Test Coverage](https://coveralls.io/github/kwhitley/itty-router?branch=v5.x). Bulletproof for production peace-of-mind.
-- Designed specifically for serverless (but works anywhere)
+- Designed specifically for serverless (but works anywhere).
 - No assumptions. Return anything; pass in anything.
 - Future-proof.  HTTP methods not-yet-invented already work with it.
 
