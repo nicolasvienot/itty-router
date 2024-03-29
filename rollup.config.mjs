@@ -7,7 +7,7 @@ import fs from 'fs-extra'
 
 // scan files to build
 const files = (await globby('./src/*.ts', {
-  ignore: ['**/*.spec.ts', 'example', '**/types.ts'],
+  ignore: ['**/*.spec.ts', 'examples', '**/types.ts'],
 })).map(path => ({
   path,
   shortPath: path.replace(/(\/src)|(\.ts)/g, '').replace('./index', '.'),

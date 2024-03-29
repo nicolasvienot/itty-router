@@ -3,11 +3,11 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
   test: {
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    exclude: ['**/example/**'],
+    exclude: ['**/examples/**'],
     coverage: {
       reporter: ['text', 'lcov'],
       exclude: [
-        '**/example/**',
+        '**/examples/**',
         '**/lib/**',
         'src/index.ts',
         'src/types',

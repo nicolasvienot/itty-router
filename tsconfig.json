@@ -23,6 +23,6 @@
     "module": "esnext",
     "types": ["@cloudflare/workers-types", "@types/node"]
   },
-  "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/example.ts"],
-  "include": ["src", "example"]
+  "exclude": ["node_modules", "dist", "**/*.spec.ts", "examples"],
+  "include": ["src"]
 }
