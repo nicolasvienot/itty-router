@@ -1,41 +1,37 @@
 import { IRequestStrict, IRequest, RequestHandler } from '../../src/types'
-import { IttyRouter } from 'IttyRouter'
+import { IttyRouter } from '../../src/IttyRouter'
 
 type UserRequest = {
   user: string
 } & IRequestStrict
 
+// we define a *strict* router for this demo
 const router = IttyRouter<IRequestStrict>()
 
-const withUser: RequestHandler = (request) => {
+// middleware with explicit request-type (generic)
+const withUser: RequestHandler<UserRequest> = (request) => {
   request.user = 'Kevin'
 }
 
 router
-  // upstream request sees the request as IRequest (default), so anything goes
+  // request will be IRequestStrict here, thus no user property
   .get('/', (request) => {
-    request.user = 123 // not OK
+    request.user = 'Kevin' // invalid
   })
 
-  // then we add the middleware defined above as <UserRequest>
+  // then we add the middleware defined above, allowing the handler chain to inherit the request type
   .all('*', withUser, (request) => {
     request.user = 'Kevin'
-    request.user = 123  // NOT ok
+  })
+
+  // request will be back to IRequestStrict here, thus no user property
+  .get('/', (request) => {
+    request.user = 'Kevin' // invalid
   })
 
   // and if we ever need to restore control, add the generic back in
-  .get<UserRequest, []>('/', (request) => {
+  .get<UserRequest>('/', (request) => {
     request.user = 'Kevin'
-    request.user = 123  // NOT ok
-  })
-
-  .get('/', (request) => {
-    request.user = 'Kevin' // still ok
-    request.user = 123  // NOT ok
-  })
-
-  router.get('/', (request) => {
-    request.user = 123 // NOT ok
   })
 
 export default router

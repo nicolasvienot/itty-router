@@ -11,4 +11,4 @@ export type Route<
 >(
   path: string,
   ...handlers: RequestHandler<RequestType, Args>[]
-) => IttyRouterType<RequestType, Args>
+) => IttyRouterType<R, A>

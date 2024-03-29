@@ -1,7 +1,10 @@
-import { IRequestStrict } from 'IttyRouter'
-import { Router } from 'Router'
+import { IRequestStrict } from '../../src/types'
+import { Router } from '../../src/Router'
 
-const router = Router<IRequestStrict>()
+type Pet = { name: string }
+type List = number[]
+
+const router = Router<IRequestStrict, [Pet]>()
 
 type FooRequest = {
   foo: string
@@ -10,6 +13,11 @@ type FooRequest = {
 router
   .get('/basic', () => new Response('Success!'))
   .get('/text', () => 'Success!')
+  .get('/text', (request, env) => {
+    env.name = 'foo'
+    env.bar = 'baz' // invalid
+  })
+  .get('/', (r, env) => env.foo )
   // .get('/params/:foo', ({ foo }) => foo)              // should NOT work
   .get<FooRequest>('/params/:foo', ({ foo }) => foo)  // should work
   .get('/json', () => ({ foo: 'bar' }))
