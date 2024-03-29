@@ -8,8 +8,9 @@ import {
 
 export const IttyRouter = <
   RequestType extends IRequest = IRequest,
-  Args extends any[] = any[]
->({ base = '', routes = [], ...other }: IttyRouterOptions = {}): IttyRouterType<RequestType, Args> =>
+  Args extends any[] = any[],
+  ResponseType = any
+>({ base = '', routes = [], ...other }: IttyRouterOptions = {}): IttyRouterType<RequestType, Args, ResponseType> =>
   ({
     __proto__: new Proxy({}, {
       // @ts-expect-error (we're adding an expected prop "path" to the get)

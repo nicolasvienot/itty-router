@@ -8,8 +8,9 @@ import {
 
 export const Router = <
   RequestType = IRequest,
-  Args extends any[] = any[]
->({ base = '', routes = [], ...other }: RouterOptions = {}): RouterType<RequestType, Args> =>
+  Args extends any[] = any[],
+  ResponseType = any
+>({ base = '', routes = [], ...other }: RouterOptions = {}): RouterType<RequestType, Args, ResponseType> =>
   ({
     __proto__: new Proxy({}, {
       // @ts-expect-error (we're adding an expected prop "path" to the get)
@@ -25,7 +26,7 @@ export const Router = <
                 .replace(/\./g, '\\.')                              // dot in path
                 .replace(/(\/?)\*/g, '($1.*)?')                     // wildcard
               }/*$`),
-              // @ts-ignore
+
               handlers,                                             // embed handlers
               path,                                                 // embed clean route path
             ]
