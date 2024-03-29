@@ -51,7 +51,7 @@ An ultra-tiny API microrouter, for use when [size matters](https://github.com/Ti
 
 - Tiny. Routers from [~450 bytes](https://itty.dev/itty-router/routers/ittyrouter) to a [~970 bytes](https://itty.dev/itty-router/routers/autorouter) batteries-included version (~240-500x smaller than Express.js).
 - [TypeScript](https://itty.dev/itty-router/typescript). Powerfully (and flexibly) typed for any environment.
-- [Route-parsing](https://itty.dev/itty-router/route-patterns) & [query parsing](https://itty.dev/itty-router/route-patterns#query).
+- [Route-parsing](https://itty.dev/itty-router/route-patterns) & [query parsing](https://itty.dev/itty-router/query-params).
 - [Middleware](https://itty.dev/itty-router/middleware). Use ours or write your own.
 - [100% Test Coverage](https://coveralls.io/github/kwhitley/itty-router?branch=v5.x). Bulletproof for production peace-of-mind.
 - Web Standards. Use it [anywhere, in any environment](https://itty.dev/itty-router/runtimes).
