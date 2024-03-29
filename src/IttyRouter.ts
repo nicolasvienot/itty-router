@@ -9,13 +9,15 @@ import {
 export const IttyRouter = <
   RequestType extends IRequest = IRequest,
   Args extends any[] = any[],
-  ResponseType = any
->({ base = '', routes = [], ...other }: IttyRouterOptions = {}): IttyRouterType<RequestType, Args, ResponseType> =>
+  ResponseType = any,
+  GlobalRequestType = RequestType,
+>({ base = '', routes = [], ...other }: IttyRouterOptions = {}): IttyRouterType<RequestType, Args, ResponseType, GlobalRequestType> =>
+// @ts-ignore
   ({
     __proto__: new Proxy({}, {
       // @ts-expect-error (we're adding an expected prop "path" to the get)
       get: (target: any, prop: string, receiver: object, path: string) =>
-        (route: string, ...handlers: RequestHandler<RequestType, Args>[]) =>
+        (route: string, ...handlers: RequestHandler<GlobalRequestType, Args>[]) =>
           routes.push(
             [
               prop.toUpperCase(),
@@ -53,4 +55,4 @@ export const IttyRouter = <
             if ((response = await handler(request.proxy ?? request, ...args)) != null) return response
         }
     },
-  } as IttyRouterType<RequestType, Args>)
+  })
