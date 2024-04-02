@@ -236,6 +236,15 @@ describe('cors(options?: CorsOptions)', () => {
         expect(corsified.headers.getSetCookie().length).toBe(2)
       })
 
+      it('will preserve existing status codes', async () => {
+        const { corsify } = cors()
+        const response = new Response(null, { status: 403 })
+        const corsified = corsify(response.clone())
+
+        expect(response.status).toBe(403)
+        expect(corsified.status).toBe(403)
+      })
+
       it('will not modify a websocket request', async () => {
         const { corsify } = cors()
         const response = new WebSocketResponse(null, { status: 101 }) as Response
