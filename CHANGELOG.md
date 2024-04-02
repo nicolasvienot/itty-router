@@ -1,5 +1,7 @@
 ## Changelog
 
+- **v5.0.6**
+  - fixed: corsify as replacing status codes (now mutates original response)
 - **v5.0.5**
   - fixed: corsify now properly ignores WebSocket responses
 - **v5.0.4**
