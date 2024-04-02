@@ -53,7 +53,7 @@ export default async () => {
     ],
     plugins: [
       typescript({ sourceMap: true }),
-      // terser(),
+      terser(),
       bundleSize(),
       copy({
         targets: [
