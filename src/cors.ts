@@ -72,7 +72,10 @@ export const cors = (options: CorsOptions = {}) => {
 
   const corsify = (response: Response, request?: Request) => {
     // ignore if already has CORS headers
-    if (response?.headers?.get('access-control-allow-origin')) return response
+    if (
+      response?.headers?.get('access-control-allow-origin')
+      || response.status == 101
+    ) return response
 
     return new Response(response.body, {
       ...response,

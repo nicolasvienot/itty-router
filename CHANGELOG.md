@@ -1,5 +1,7 @@
 ## Changelog
 
+- **v5.0.5**
+  - fixed: corsify now properly ignores WebSocket responses
 - **v5.0.4**
   - fixed: (TypeScript) middleware corrupting downstream request types and args
 - **v5.0.2**

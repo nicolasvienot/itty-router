@@ -14,6 +14,15 @@ const corsRouter = (options?: CorsOptions) => {
   }).get('/', () => TEST_STRING)
 }
 
+class WebSocketResponse {
+  constructor(body, options = {}) {
+    this.body = body
+    this.status = options.status || 101
+    this.statusText = options.statusText || 'Switching Protocols'
+    this.headers = options.headers || new Headers()
+  }
+}
+
 const DEFAULT_ROUTER = corsRouter()
 const HEADERS_AS_ARRAY = [ 'x-foo', 'x-bar' ]
 const HEADERS_AS_STRING = HEADERS_AS_ARRAY.join(',')
@@ -225,6 +234,14 @@ describe('cors(options?: CorsOptions)', () => {
 
         expect(response.headers.getSetCookie().length).toBe(2)
         expect(corsified.headers.getSetCookie().length).toBe(2)
+      })
+
+      it('will not modify a websocket request', async () => {
+        const { corsify } = cors()
+        const response = new WebSocketResponse(null, { status: 101 }) as Response
+        const afterCorsify = corsify(response)
+        expect(afterCorsify.headers.get('access-control-allow-origin')).toBeNull()
+        expect(afterCorsify.status).toBe(101)
       })
     })
   })
