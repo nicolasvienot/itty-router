@@ -1,5 +1,7 @@
 ## Changelog
 
+- **v5.0.7**
+  - fixed: withParams could attempt to bind null (collision with node adapter)
 - **v5.0.6**
   - fixed: corsify as replacing status codes (now mutates original response)
 - **v5.0.5**
