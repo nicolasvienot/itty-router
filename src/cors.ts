@@ -77,15 +77,14 @@ export const cors = (options: CorsOptions = {}) => {
       || response.status == 101
     ) return response
 
-    return new Response(response.body, {
-      ...response,
-      // @ts-expect-error
-      headers: [
-        ...response.headers,
-        ['access-control-allow-origin', getAccessControlOrigin(request)],
-        ...Object.entries(corsHeaders),
-      ].filter(v => v[1]),
-    })
+    const origin = getAccessControlOrigin(request)
+    if (origin) response.headers.append('access-control-allow-origin', origin)
+
+    for (const [key, value] of Object.entries(corsHeaders)) {
+      if (value) response.headers.append(key, value)
+    }
+
+    return response
   }
 
   // Return corsify and preflight methods.
