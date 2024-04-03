@@ -57,7 +57,7 @@ export const cors = (options: CorsOptions = {}) => {
     : origin
   }
 
-  const appendHeadersAndReturn = (response: Response, headers: Record<string, any>) => {
+  const appendHeadersAndReturn = (response: Response, headers: Record<string, any>): Response => {
     for (const [key, value] of Object.entries(headers)) {
       if (value) response.headers.append(key, value)
     }
@@ -86,12 +86,6 @@ export const cors = (options: CorsOptions = {}) => {
     // clone the response
     // response = response.clone()
 
-    // const origin = getAccessControlOrigin(request)
-    // if (origin) response.headers.append('access-control-allow-origin', origin)
-
-    // for (const [key, value] of Object.entries(corsHeaders)) {
-    //   if (value) response.headers.append(key, value)
-    // }
     return appendHeadersAndReturn(response, {
       'access-control-allow-origin': getAccessControlOrigin(request),
       ...corsHeaders
