@@ -30,7 +30,7 @@ export const cors = (options: CorsOptions = {}) => {
   } = options
 
   // create generic CORS headers
-  const corsHeaders: Record<string, any> = {
+  const corsHeaders = {
     // @ts-expect-error
     'access-control-expose-headers': exposeHeaders?.join?.(',') ?? exposeHeaders, // include allowed headers
     // @ts-expect-error
@@ -57,15 +57,21 @@ export const cors = (options: CorsOptions = {}) => {
     : origin
   }
 
+  const appendHeadersAndReturn = (response: Response, headers: Record<string, any>) => {
+    for (const [key, value] of Object.entries(headers)) {
+      if (value) response.headers.append(key, value)
+    }
+    return response
+  }
+
   const preflight = (request: Request) => {
     if (request.method == 'OPTIONS') {
-      return new Response(null, {
-        status: 204,
-        headers: Object.entries({
-          'access-control-allow-origin': getAccessControlOrigin(request),
-          'access-control-allow-headers': allowHeaders?.join?.(',') ?? allowHeaders ?? request.headers.get('access-control-request-headers'), // include allowed headers
-          ...corsHeaders,
-        }).filter(v => v[1]),
+      const response = new Response(null, { status: 204 })
+
+      return appendHeadersAndReturn(response, {
+        'access-control-allow-origin': getAccessControlOrigin(request),
+        'access-control-allow-headers': allowHeaders?.join?.(',') ?? allowHeaders ?? request.headers.get('access-control-request-headers'), // include allowed headers
+        ...corsHeaders,
       })
     } // otherwise ignore
   }
@@ -80,14 +86,16 @@ export const cors = (options: CorsOptions = {}) => {
     // clone the response
     // response = response.clone()
 
-    const origin = getAccessControlOrigin(request)
-    if (origin) response.headers.append('access-control-allow-origin', origin)
+    // const origin = getAccessControlOrigin(request)
+    // if (origin) response.headers.append('access-control-allow-origin', origin)
 
-    for (const [key, value] of Object.entries(corsHeaders)) {
-      if (value) response.headers.append(key, value)
-    }
-
-    return response
+    // for (const [key, value] of Object.entries(corsHeaders)) {
+    //   if (value) response.headers.append(key, value)
+    // }
+    return appendHeadersAndReturn(response, {
+      'access-control-allow-origin': getAccessControlOrigin(request),
+      ...corsHeaders
+    })
   }
 
   // Return corsify and preflight methods.
