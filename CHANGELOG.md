@@ -1,5 +1,7 @@
 ## Changelog
 
+- **v5.0.9**
+  - fixed: cors preflight should reflect requested headers as the default (required for credentials)
 - **v5.0.7**
   - fixed: withParams could attempt to bind null (collision with node adapter)
 - **v5.0.6**
