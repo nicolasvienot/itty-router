@@ -32,6 +32,9 @@ const REGEXP_DENY_ORIGIN = /^https:\/\/google.com$/
 const BASIC_OPTIONS_REQUEST = toReq('OPTIONS /', {
   headers: { origin: TEST_ORIGIN },
 })
+const REQUEST_HEADERS_REQUEST = toReq('OPTIONS /', {
+  headers: { 'access-control-request-headers': 'x-foo' },
+})
 const BASIC_REQUEST = toReq('/', {
   headers: { origin: TEST_ORIGIN },
 })
@@ -178,6 +181,12 @@ describe('cors(options?: CorsOptions)', () => {
       it('responds with status 204', async () => {
         const response = await DEFAULT_ROUTER.fetch(BASIC_OPTIONS_REQUEST)
         expect(response.status).toBe(204)
+      })
+
+      it('reflects requested headers by default', async () => {
+        const response = await DEFAULT_ROUTER.fetch(REQUEST_HEADERS_REQUEST)
+        expect(response.status).toBe(204)
+        expect(response.headers.get('access-control-allow-headers')).toBe('x-foo')
       })
     })
   })

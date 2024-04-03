@@ -31,7 +31,6 @@ export const cors = (options: CorsOptions = {}) => {
 
   // create generic CORS headers
   const corsHeaders: Record<string, any> = {
-    'access-control-allow-headers': allowHeaders?.join?.(',') ?? allowHeaders, // include allowed headers
     // @ts-expect-error
     'access-control-expose-headers': exposeHeaders?.join?.(',') ?? exposeHeaders, // include allowed headers
     // @ts-expect-error
@@ -64,6 +63,7 @@ export const cors = (options: CorsOptions = {}) => {
         status: 204,
         headers: Object.entries({
           'access-control-allow-origin': getAccessControlOrigin(request),
+          'access-control-allow-headers': allowHeaders?.join?.(',') ?? allowHeaders ?? request.headers.get('access-control-request-headers'), // include allowed headers
           ...corsHeaders,
         }).filter(v => v[1]),
       })
@@ -76,6 +76,9 @@ export const cors = (options: CorsOptions = {}) => {
       response?.headers?.get('access-control-allow-origin')
       || response.status == 101
     ) return response
+
+    // clone the response
+    // response = response.clone()
 
     const origin = getAccessControlOrigin(request)
     if (origin) response.headers.append('access-control-allow-origin', origin)
