@@ -29,17 +29,6 @@ export const cors = (options: CorsOptions = {}) => {
     maxAge,
   } = options
 
-  // create generic CORS headers
-  const corsHeaders: Record<string, any> = {
-    'access-control-allow-headers': allowHeaders?.join?.(',') ?? allowHeaders, // include allowed headers
-    // @ts-expect-error
-    'access-control-expose-headers': exposeHeaders?.join?.(',') ?? exposeHeaders, // include allowed headers
-    // @ts-expect-error
-    'access-control-allow-methods': allowMethods?.join?.(',') ?? allowMethods,  // include allowed methods
-    'access-control-max-age': maxAge,
-    'access-control-allow-credentials': credentials,
-  }
-
   const getAccessControlOrigin = (request?: Request): string => {
     const requestOrigin = request?.headers.get('origin') // may be null if no request passed
 
@@ -58,14 +47,26 @@ export const cors = (options: CorsOptions = {}) => {
     : origin
   }
 
+  const appendHeadersAndReturn = (response: Response, headers: Record<string, any>): Response => {
+    for (const [key, value] of Object.entries(headers)) {
+      if (value) response.headers.append(key, value)
+    }
+    return response
+  }
+
   const preflight = (request: Request) => {
     if (request.method == 'OPTIONS') {
-      return new Response(null, {
-        status: 204,
-        headers: Object.entries({
-          'access-control-allow-origin': getAccessControlOrigin(request),
-          ...corsHeaders,
-        }).filter(v => v[1]),
+      const response = new Response(null, { status: 204 })
+
+      return appendHeadersAndReturn(response, {
+        'access-control-allow-origin': getAccessControlOrigin(request),
+        // @ts-ignore
+        'access-control-allow-methods': allowMethods?.join?.(',') ?? allowMethods,  // include allowed methods
+        // @ts-ignore
+        'access-control-expose-headers': exposeHeaders?.join?.(',') ?? exposeHeaders, // include allowed headers
+        'access-control-allow-headers': allowHeaders?.join?.(',') ?? allowHeaders ?? request.headers.get('access-control-request-headers'), // include allowed headers
+        'access-control-max-age': maxAge,
+        'access-control-allow-credentials': credentials,
       })
     } // otherwise ignore
   }
@@ -77,14 +78,13 @@ export const cors = (options: CorsOptions = {}) => {
       || response.status == 101
     ) return response
 
-    const origin = getAccessControlOrigin(request)
-    if (origin) response.headers.append('access-control-allow-origin', origin)
+    // clone the response
+    // response = response.clone()
 
-    for (const [key, value] of Object.entries(corsHeaders)) {
-      if (value) response.headers.append(key, value)
-    }
-
-    return response
+    return appendHeadersAndReturn(response, {
+      'access-control-allow-origin': getAccessControlOrigin(request),
+      'access-control-allow-credentials': credentials,
+    })
   }
 
   // Return corsify and preflight methods.

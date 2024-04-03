@@ -32,6 +32,9 @@ const REGEXP_DENY_ORIGIN = /^https:\/\/google.com$/
 const BASIC_OPTIONS_REQUEST = toReq('OPTIONS /', {
   headers: { origin: TEST_ORIGIN },
 })
+const REQUEST_HEADERS_REQUEST = toReq('OPTIONS /', {
+  headers: { 'access-control-request-headers': 'x-foo' },
+})
 const BASIC_REQUEST = toReq('/', {
   headers: { origin: TEST_ORIGIN },
 })
@@ -179,6 +182,12 @@ describe('cors(options?: CorsOptions)', () => {
         const response = await DEFAULT_ROUTER.fetch(BASIC_OPTIONS_REQUEST)
         expect(response.status).toBe(204)
       })
+
+      it('reflects requested headers by default', async () => {
+        const response = await DEFAULT_ROUTER.fetch(REQUEST_HEADERS_REQUEST)
+        expect(response.status).toBe(204)
+        expect(response.headers.get('access-control-allow-headers')).toBe('x-foo')
+      })
     })
   })
 
@@ -189,7 +198,6 @@ describe('cors(options?: CorsOptions)', () => {
         const response = corsify(new Response(null))
         const response2 = corsify(new Response(null), BASIC_REQUEST)
         expect(response.headers.get('access-control-allow-origin')).toBe('*')
-        expect(response.headers.get('access-control-allow-methods')).toBe('*')
         expect(response2.headers.get('access-control-allow-origin')).toBe('*')
       })
 
@@ -223,6 +231,21 @@ describe('cors(options?: CorsOptions)', () => {
         const response2 = corsify(new Response(null), BASIC_REQUEST)
         expect(response.headers.get('access-control-allow-origin')).toBe(TEST_ORIGIN)
         expect(response2.headers.get('access-control-allow-origin')).toBe(TEST_ORIGIN)
+      })
+
+      it('will not NOT include preflight headers', async () => {
+        const { corsify } = cors({
+          allowHeaders: 'foo',
+          allowMethods: 'GET',
+          exposeHeaders: 'foo',
+          maxAge: 3600,
+        })
+        const corsified = corsify(new Response(null))
+
+        expect(corsified.headers.get('access-control-allow-methods')).toBeNull()
+        expect(corsified.headers.get('access-control-allow-headers')).toBeNull()
+        expect(corsified.headers.get('access-control-expose-headers')).toBeNull()
+        expect(corsified.headers.get('access-control-max-age')).toBeNull()
       })
 
       it('will safely preserve multiple cookies (or other identical header names)', async () => {
