@@ -29,16 +29,6 @@ export const cors = (options: CorsOptions = {}) => {
     maxAge,
   } = options
 
-  // create generic CORS headers
-  const corsHeaders = {
-    // @ts-expect-error
-    'access-control-expose-headers': exposeHeaders?.join?.(',') ?? exposeHeaders, // include allowed headers
-    // @ts-expect-error
-    'access-control-allow-methods': allowMethods?.join?.(',') ?? allowMethods,  // include allowed methods
-    'access-control-max-age': maxAge,
-    'access-control-allow-credentials': credentials,
-  }
-
   const getAccessControlOrigin = (request?: Request): string => {
     const requestOrigin = request?.headers.get('origin') // may be null if no request passed
 
@@ -70,8 +60,13 @@ export const cors = (options: CorsOptions = {}) => {
 
       return appendHeadersAndReturn(response, {
         'access-control-allow-origin': getAccessControlOrigin(request),
+        // @ts-ignore
+        'access-control-allow-methods': allowMethods?.join?.(',') ?? allowMethods,  // include allowed methods
+        // @ts-ignore
+        'access-control-expose-headers': exposeHeaders?.join?.(',') ?? exposeHeaders, // include allowed headers
         'access-control-allow-headers': allowHeaders?.join?.(',') ?? allowHeaders ?? request.headers.get('access-control-request-headers'), // include allowed headers
-        ...corsHeaders,
+        'access-control-max-age': maxAge,
+        'access-control-allow-credentials': credentials,
       })
     } // otherwise ignore
   }
@@ -88,7 +83,7 @@ export const cors = (options: CorsOptions = {}) => {
 
     return appendHeadersAndReturn(response, {
       'access-control-allow-origin': getAccessControlOrigin(request),
-      ...corsHeaders
+      'access-control-allow-credentials': credentials,
     })
   }
 
