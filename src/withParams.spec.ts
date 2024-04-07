@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { Router } from './Router'
 import { withParams } from './withParams'
+import { toReq } from '../lib/index'
 
 describe('withParams (middleware)', () => {
   it('allows accessing route params from the request itself', async () => {
@@ -68,5 +69,15 @@ describe('withParams (middleware)', () => {
       method: 'GET',
       testParam: 'testValue',
     })
+  })
+
+  it('downstream handlers can access original Request through request.raw', async () => {
+    const handler = vi.fn(r => r.raw)
+    const router = Router().get('/', withParams, handler)
+    const request = toReq('/')
+
+    await router.fetch(request)
+
+    expect(handler).toHaveReturnedWith(request)
   })
 })
