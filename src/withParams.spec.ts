@@ -7,7 +7,7 @@ describe('withParams (middleware)', () => {
   it('allows accessing route params from the request itself', async () => {
     const router = Router()
     const handler = vi.fn(({ id, method }) => ({ id, method }))
-    const request = { method: 'GET', url: 'https://foo.bar/baz' }
+    const request = toReq('/baz')
 
     await router.get('/:id', withParams, handler).fetch(request)
 
@@ -37,7 +37,7 @@ describe('withParams (middleware)', () => {
   it('can be used as global upstream middleware', async () => {
     const router = Router()
     const handler = vi.fn(({ id, method }) => ({ id, method }))
-    const request = { method: 'GET', url: 'https://foo.bar/baz' }
+    const request = toReq('/baz')
 
     await router.all('*', withParams).get('/:id', handler).fetch(request)
 
