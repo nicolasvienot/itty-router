@@ -1,5 +1,7 @@
 ## Changelog
 
+- **v5.0.11**
+  - fixed: ./types was not being properly exported
 - **v5.0.10**
   - fixed: response formatters in finally stage could still cross pollute headers in Node
 - **v5.0.9**
