@@ -2,7 +2,7 @@ import { Router } from './Router'
 import { error } from './error'
 import { json } from './json'
 import { AutoRouterOptions, AutoRouterType, IRequest } from './types'
-import { withParams } from './withParams'
+import { withParams as wp } from './withParams'
 
 export const AutoRouter = <
   RequestType extends IRequest = IRequest,
@@ -12,6 +12,7 @@ export const AutoRouter = <
   format = json,
   missing = () => error(404),
   finally: f = [],
+  withParams = wp,
   before = [],
   ...options }: AutoRouterOptions = {}
 ): AutoRouterType<RequestType, Args, ResponseType> => Router({

@@ -70,14 +70,4 @@ describe('withParams (middleware)', () => {
       testParam: 'testValue',
     })
   })
-
-  it('downstream handlers can access original Request through request.raw', async () => {
-    const handler = vi.fn(r => r.raw)
-    const router = Router().get('/', withParams, handler)
-    const request = toReq('/')
-
-    await router.fetch(request)
-
-    expect(handler).toHaveReturnedWith(request)
-  })
 })

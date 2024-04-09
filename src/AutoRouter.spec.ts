@@ -55,6 +55,14 @@ describe(`SPECIFIC TESTS: AutoRouter`, () => {
         expect(response.status).toBe(418)
       })
 
+      it('withParams: can replace the withParams middleware', async () => {
+        const handler = vi.fn(({ a, b, params }) => [a, b, params.a, params.b])
+        const router = AutoRouter({ withParams: () => {} }).get('/:a/:b', handler)
+
+        await router.fetch(toReq('/foo/bar'))
+        expect(handler).toHaveReturnedWith([undefined, undefined, 'foo', 'bar'])
+      })
+
       it('before: RouteHandler - adds upstream middleware', async () => {
         const handler = vi.fn(r => typeof r.date)
         const router = AutoRouter({

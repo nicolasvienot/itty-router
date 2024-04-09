@@ -1,7 +1,5 @@
-import { createResponse } from './createResponse'
-
-export const websocket = (client: WebSocket, options: object = {}) =>
-  createResponse()(null, {
+export const websocket = (client: WebSocket, options?: ResponseInit) =>
+  new Response(null, {
     status: 101,
     webSocket: client,
     ...options,
