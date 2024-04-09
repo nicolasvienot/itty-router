@@ -26,6 +26,3 @@ export * from './withParams'
 
 // CORS
 export * from './cors'
-
-// TYPES
-export * from './types'
