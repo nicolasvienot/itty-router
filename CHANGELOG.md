@@ -1,5 +1,7 @@
 ## Changelog
 
+- **v5.1.0**
+  - added: withParams is now an option in AutoRouter (set to no-op to bypass)
 - **v5.0.10**
   - fixed: response formatters in finally stage could still cross pollute headers in Node
 - **v5.0.9**
