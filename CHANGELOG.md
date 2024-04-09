@@ -1,5 +1,7 @@
 ## Changelog
 
+- **v5.0.10**
+  - fixed: response formatters in finally stage could still cross pollute headers in Node
 - **v5.0.9**
   - fixed: cors preflight should reflect requested headers as the default (required for credentials)
 - **v5.0.7**

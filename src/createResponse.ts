@@ -5,10 +5,11 @@ import { ResponseFormatter } from './types'
     format = 'text/plain; charset=utf-8',
     transform?: (body: any) => any,
   ): ResponseFormatter =>
-  (body, { ...options } = {}) => {
+  (body, options = {}) => {
     if (body === undefined || body instanceof Response) return body
 
-    const response = new Response(transform?.(body) ?? body, options)
+    // @ts-ignore
+    const response = new Response(transform?.(body) ?? body, options.url ? undefined : options)
     response.headers.set('content-type', format)
     return response
   }
