@@ -14,7 +14,7 @@ jobs:
 
     - name: Prepare tag for release notes
       id: prep
-      run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF#refs/tags/} | sed 's/v//; s/\./g')"
+      run: echo "::set-output name=tag::$(echo ${GITHUB_REF#refs/tags/} | sed 's/\.//g')"
 
     - name: Create Release
       uses: actions/create-release@v1
@@ -24,6 +24,6 @@ jobs:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
         body: |
-          See **bold** [${{ github.ref }} CHANGELOG entry](https://github.com/kwhitley/itty-router/blob/v5.x/CHANGELOG.md#v${{ steps.prep.outputs.tag }}) for notes
+          See [${{ github.ref_name }} CHANGELOG entry](https://github.com/kwhitley/itty-router/blob/v5.x/CHANGELOG.md#v${{ steps.prep.outputs.tag }}) for notes
         draft: false
         prerelease: false
