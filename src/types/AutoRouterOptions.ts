@@ -9,4 +9,4 @@ export type AutoRouterOptions<
 > = {
   missing?: RequestHandler<RequestType, Args>
   format?: ResponseHandler
-} & RouterOptions<RequestType, Args, ResponseType>
+} & RouterOptions<RequestType, Args>
