@@ -13,7 +13,7 @@ export const AutoRouter = <
   missing = () => error(404),
   finally: f = [],
   before = [],
-  ...options }: AutoRouterOptions<RequestType, Args, ResponseType> = {}
+  ...options }: AutoRouterOptions<RequestType, Args> = {}
 ) => Router<RequestType, Args, ResponseType>({
   before: [
     // @ts-ignore
