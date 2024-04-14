@@ -1,7 +1,7 @@
 import { Router } from './Router'
 import { error } from './error'
 import { json } from './json'
-import { AutoRouterOptions, AutoRouterType, IRequest, IRequestStrict} from './types'
+import { AutoRouterOptions, AutoRouterType, IRequest } from './types'
 import { withParams } from './withParams'
 
 export const AutoRouter = <

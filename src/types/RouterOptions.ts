@@ -8,7 +8,6 @@ import { ResponseHandler } from './ResponseHandler'
 export type RouterOptions<
   RequestType = IRequest,
   Args extends any[] = [],
-  ResponseType = any
 > = {
   before?: RequestHandler<RequestType, Args>[]
   catch?: ErrorHandler<StatusError, RequestType, Args>

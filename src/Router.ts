@@ -10,7 +10,7 @@ export const Router = <
   RequestType = IRequest,
   Args extends any[] = any[],
   ResponseType = any
->({ base = '', routes = [], ...other }: RouterOptions<RequestType, Args, ResponseType> = {}): RouterType<RequestType, Args, ResponseType> =>
+>({ base = '', routes = [], ...other }: RouterOptions<RequestType, Args> = {}): RouterType<RequestType, Args, ResponseType> =>
   ({
     __proto__: new Proxy({}, {
       // @ts-expect-error (we're adding an expected prop "path" to the get)
