@@ -1,4 +1,4 @@
-import { Router } from '../../src/Router'
+import { IttyRouter } from '../../src/IttyRouter'
 import { IRequest, IRequestStrict, RequestHandler } from '../../src/types'
 
 // we define our environment
@@ -17,7 +17,7 @@ export const withUser: RequestHandler<IRequest, Args> =
     env.name = 'Kevin' // invalid
   }
 
-const router = Router<IRequestStrict, Args>()
+const router = IttyRouter<IRequestStrict, Args>()
 
 router
   // before middleware
