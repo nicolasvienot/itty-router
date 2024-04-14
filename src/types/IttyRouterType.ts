@@ -6,20 +6,20 @@ import { RouteEntry } from './RouteEntry'
 import { CustomRoutes } from './CustomRoutes'
 
 export type IttyRouterType<
-  R = IRequest,
-  A extends any[] = any[],
+  RequestType = IRequest,
+  Args extends any[] = any[],
   ResponseType = any,
-  GlobalRequestType = R,
+  GlobalRequestType = RequestType,
 > = {
-  __proto__: IttyRouterType<R>
+  __proto__: IttyRouterType<RequestType, Args, ResponseType>
   routes: RouteEntry[]
-  fetch: <Args extends any[] = A>(request: RequestLike, ...extra: Args) => Promise<ResponseType>
-  all: Route<GlobalRequestType, A>
-  delete: Route<GlobalRequestType, A>
-  get: Route<GlobalRequestType, A>
-  head: Route<GlobalRequestType, A>
-  options: Route<GlobalRequestType, A>
-  patch: Route<GlobalRequestType, A>
-  post: Route<GlobalRequestType, A>
-  put: Route<GlobalRequestType, A>
-} & CustomRoutes<Route<GlobalRequestType, A>> & GenericTraps
+  fetch: <A extends any[] = Args>(request: RequestLike, ...extra: A) => Promise<ResponseType>
+  all: Route<GlobalRequestType, Args>
+  delete: Route<GlobalRequestType, Args>
+  get: Route<GlobalRequestType, Args>
+  head: Route<GlobalRequestType, Args>
+  options: Route<GlobalRequestType, Args>
+  patch: Route<GlobalRequestType, Args>
+  post: Route<GlobalRequestType, Args>
+  put: Route<GlobalRequestType, Args>
+} & CustomRoutes<Route<GlobalRequestType, Args>> & GenericTraps

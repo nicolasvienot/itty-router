@@ -1,11 +1,11 @@
 import { IRequest } from './IRequest'
 
 export type ResponseHandler<
-  ResponseType = Response,
+  ResponseType = any,
   RequestType = IRequest,
   Args extends any[] = any[]
 > = (
-  response: ResponseType & any,
-  request: RequestType & any,
+  response: ResponseType,
+  request: RequestType,
   ...args: Args
 ) => any
