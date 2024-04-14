@@ -19,6 +19,6 @@ jobs:
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
-        body: 'see CHANGELOG for notes'
+        body: 'see [v${{ github.ref_name }} CHANGELOG entry](https://github.com/kwhitley/itty-router/blob/v5.x/CHANGELOG.md#v${{ github.ref_name.substring(1).replace(/\./g, '') }}) for notes'
         draft: false
         prerelease: false

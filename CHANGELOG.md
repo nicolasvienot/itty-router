@@ -1,25 +1,25 @@
 ## Changelog
 
-- **v5.0.13**
+#### v5.0.13
   - fixed: Router/AutoRouter stages were not connected to router-level generics
-- **v5.0.12**
+#### v5.0.12
   - fixed: ./types was not being properly exported
-- **v5.0.10**
+#### v5.0.10
   - fixed: response formatters in finally stage could still cross pollute headers in Node
-- **v5.0.9**
+#### v5.0.9
   - fixed: cors preflight should reflect requested headers as the default (required for credentials)
-- **v5.0.7**
+#### v5.0.7
   - fixed: withParams could attempt to bind null (collision with node adapter)
-- **v5.0.6**
+#### v5.0.6
   - fixed: corsify as replacing status codes (now mutates original response)
-- **v5.0.5**
+#### v5.0.5
   - fixed: corsify now properly ignores WebSocket responses
-- **v5.0.4**
+#### v5.0.4
   - fixed: (TypeScript) middleware corrupting downstream request types and args
-- **v5.0.2**
+#### v5.0.2
   - fixed: AutoRouter was missing the router-level generics support of the other 2 routers.
   - fixed: All 3 routers had their 3rd generic argument, ResponseType added per the spec.
-- **v5.0.0**
+#### v5.0.0
   - BREAKING: router.fetch replaces router.handle (now deprecated)
   - BREAKING: "createCors" has been deprecated in favor of "cors" (new options & requirements)
   - changed: previous Router (smallest) is now IttyRouter
@@ -30,68 +30,5 @@
   - added: AutoRouter (batteries-included Router)
   - fixed (TS): Routers types have been modified to allow both rotuer-level generics AND route-level generics in the same instance.
   - docs: see Migration guide at https://itty.dev/itty-router/migrations/v4-v5
-- **v4.2.2**
-  - fixed: withContent should return undefined if request.body is undefined
-- **v4.2.1**
-  - maintenance: updated deps, test coverage, removed isomorphic-fetch dev dep
-- **v4.2.0**
-  - added: withContent now parses JSON->formData->text with fallthrough
-- **v4.1.1**
-  - fixed: withContent will successfully parse non-JSON as fallback, preventing errors
-- **v4.1.0**
-  - added: createResponse and all Response helpers support web standards Headers class
-- **v4.0.28**
-  - fixed: withContent throws 400 (instead of 500) on failed JSON parse ([@smcstewart](https://github.com/smcstewart))
-- **v4.0.27**
-  - fixed: .toUpperCase issue that prevented serialization of entire router
-- **v4.0.24**
-  - fixed: createResponse(undefined) should return undefined (not a Response)
-- **v4.1.0**
-  - added: `HasContent<ContentType>` type to `withContent` ([@alexrosenfeld10](https://github.com/alexrosenfeld10))
-  - added: Adds basic text/formData support to supplement the native JSON support of `withContent`
-- **v4.0.00** - Partial changelog below
-  - BREAKING: heavy TS rewrite for core Router (thank you, ChatGPT)
-  - added: nearly all extras from itty-router-extras
-  - added: createCors from itty-cors
-  - added: complete documentation at https://itty.dev
-  - feature: withParams may be used as upstream middleware (hooray!)
-- **v3.0.11** - changed environment build to rollup (from tsup) and code golfed the toQuery logic. ([@DrLoopFall](https://github.com/DrLoopFall))
-- **v3.0.9** - fixes some TS issue, previously requiring you to define Router Methods to chain request definitions. ([@jahands](https://github.com/jahands))
-- **v3.0.0** - total TS conversion with improved types, adding greedy params ([@markusahlstrand](https://github.com/markusahlstrand))
-- **v2.6.4** - merely a republish, attempting to solve NPM test scores vs CI/CD
-- **v2.6.2** - fixes issue with using base path of "/" with route definitions starting with "/" (creating double slash)
-- **v2.6.1** - fixes named export in ESM/mjs export
-- **v2.6.0** - package now is hybrid export, supporting both ESM (.mjs) and CJS (.js) minified versions
-- **v2.5.3** - corrects type for router.handle to return Promise<any>
-- **v2.5.2** - fixes issue with arrow functions in CommonJS named exports (rare issue)
-- **v2.5.1** - added context to Cloudflare ES module syntax example ([@jcapogna](https://github.com/jcapogna))
-- **v2.5.0** - improved TypeScript docs/types (thanks [@SupremeTechnopriest](https://github.com/SupremeTechnopriest)!)
-- **v2.4.9** - fixed the cursed "optional" file format capturing bug - RIP all the bytes lost
-- **v2.4.6** - fixed README issues
-- **v2.4.1** - fixed type errors introduced with 2.4.0
-- **v2.4.0** - HUGE internal code-golfing refactor thanks to [@taralx](https://github.com/taralx)! Super cool work on this!!!
-- **v2.3.10** - fix: dots now properly escaped (e.g. /image.jpg should not match /imageXjpg)
-- **v2.3.9** - dev fixes: [@taralx](https://github.com/taralx) improved QOL issues for test writers and dev installers
-- **v2.3.7** - fix: :id.:format not resolving (only conditional format would match)
-- **v2.3.0** - feature: request handler will be passed request.proxy (if found) or request (if not) - allowing for middleware magic downstream...
-- **v2.2.0** - feature: base path (option) is now included in the route param parsing...
-- **v2.1.1** - fix: should now be strict-mode compatible
-- **v2.1.0** - now handles the problematic . character within a param (e.g. /:url/action with /google.com/action)
-- **v2.0.7** - shaved a few more characters in the regex
-- **v2.0.0** - API break: `Router({ else: missingHandler })` has been replaced with `router.all('*', missingHandler)`, and now "all" channel respects order of entry
-- **v1.6.0** - added { else: missingHandler } to options for 404 catch-alls (thanks to the discussion with [@martinffx](https://github.com/martinffx))
-- **v1.5.0** - added '.all(route, handler)' handling for passthrough middleware
-- **v1.4.3** - fixed nested routers using simple "/" routes
-- **v1.4.1** - fixed typings for extra args (thanks [@rodrigoaddor](https://github.com/rodrigoaddor))
-- **v1.4.0** - adds support for optional format params (e.g. "/:id.:format?" --> { params: { id: '13', format: 'jpg' }})
-- **v1.3.0** - adds support for multiple args to handle(request, ...args) method (@hunterloftis)
-- **v1.2.2** - fix: require verify/build pass before publishing and fixed README badges (should point to v1.x branch)
-- **v1.2.0** - feature: chainable route declarations (with test)... that didn't take long...
-- **v1.1.1** - updated README to reflect that chaining actually never was working... (not a breaking change, as no code could have been using it)
-- **v1.1.0** - feature: added single option `{ base: '/some/path' }` to `Router` for route prefixing, fix: trailing wildcard issue (e.g. `/foo/*` should match `/foo`)
-- **v1.0.0** - production release, stamped into gold from x0.9.7
-- **v0.9.0** - added support for multiple handlers (middleware)
-- **v0.8.0** - deep minification pass and build steps for final module
-- **v0.7.0** - removed { path } from request handler context, travis build fixed, added coveralls, improved README docs
-- **v0.6.0** - added types to project for vscode intellisense (thanks [@mvasigh](https://github.com/mvasigh))
-- **v0.5.4** - fix: wildcard routes properly supported
+
+For changes prior to v5, see the [v4 CHANGELOG](https://github.com/kwhitley/itty-router/edit/v4.x/CHANGELOG.md)
