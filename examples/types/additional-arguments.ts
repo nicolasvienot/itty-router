@@ -1,9 +1,5 @@
-import { RequestHandler } from '../../src/types'
-import { IRequestStrict } from '../../src/types'
 import { Router } from '../../src/Router'
-import { IttyRouter } from '../../src/IttyRouter'
-import { AutoRouter } from '../../src/AutoRouter'
-import { IRequest } from 'itty-router'
+import { IRequest, IRequestStrict, RequestHandler } from '../../src/types'
 
 // we define our environment
 type Environment = { age: number }
@@ -28,7 +24,7 @@ router
   .get('/', (request, env) => {
     request.user = 'kevin' // invalid (strict)
     env.whatever = 123 // valid (any)
-    env.age = 123 // valid (any)
+    env.age = 123 // valid
   })
 
   // route-level overrides
@@ -39,7 +35,7 @@ router
   })
   // route-level overrides
   .get<IRequest, AlternativeArgs>('/', (request, env) => {
-    request.foo = 'bar' // invalid
+    request.foo = 'bar' // valid
     env.age = 123 // invalid
     env.name = 'Mittens' // valid
   })
@@ -52,5 +48,5 @@ router
   })
 
   .get('/', (request, env) => {
-    env.age = 'foo' // valid (any)
+    env.age = 'foo' // invalid
   })
