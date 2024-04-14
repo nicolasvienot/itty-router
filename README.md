@@ -36,9 +36,6 @@
   <a href="https://www.twitter.com/ittydev" target="_blank">
     <img src="https://img.shields.io/twitter/follow/ittydev.svg?style=social&label=Follow" alt="Follow ittydev" />
   </a>
-  <a href="" target="_blank">
-    <img src="" alt="" />
-  </a>
 </p>
 
 ###  [v5 Documentation](https://itty.dev/itty-router) &nbsp;| &nbsp; [v4 -> v5 Migration Guide](https://itty.dev/itty-router/migrations/v4-v5) &nbsp;| &nbsp; [Discord](https://discord.gg/53vyrZAu9u) 
