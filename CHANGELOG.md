@@ -1,6 +1,8 @@
 ## Changelog
 
-- **v5.0.11**
+- **v5.0.13**
+  - fixed: Router/AutoRouter stages were not connected to router-level generics
+- **v5.0.12**
   - fixed: ./types was not being properly exported
 - **v5.0.10**
   - fixed: response formatters in finally stage could still cross pollute headers in Node

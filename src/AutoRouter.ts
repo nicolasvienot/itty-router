@@ -13,17 +13,20 @@ export const AutoRouter = <
   missing = () => error(404),
   finally: f = [],
   before = [],
-  ...options }: AutoRouterOptions = {}
-): AutoRouterType<RequestType, Args, ResponseType> => Router({
+  ...options }: AutoRouterOptions<RequestType, Args, ResponseType> = {}
+) => Router<RequestType, Args, ResponseType>({
   before: [
+    // @ts-ignore
     withParams,
     ...before
   ],
+  // @ts-ignore
   catch: error,
   finally: [
+    // @ts-ignore
     (r: any, ...args) => r ?? missing(r, ...args),
     format,
     ...f,
   ],
   ...options,
-})
+}) as AutoRouterType<RequestType, Args, ResponseType>

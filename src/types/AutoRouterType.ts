@@ -4,10 +4,10 @@ import { ResponseHandler } from './ResponseHandler'
 import { RouterType } from './RouterType'
 
 export type AutoRouterType<
-  R = IRequest,
+  RequestType = IRequest,
   Args extends any[] = any[],
   ResponseType = any
 > = {
-  missing?: RequestHandler
+  missing?: RequestHandler<RequestType, Args>
   format?: ResponseHandler
-} & RouterType<R, Args, ResponseType>
+} & RouterType<RequestType, Args, ResponseType>
