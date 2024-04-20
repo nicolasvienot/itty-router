@@ -1,44 +1,20 @@
 <br />
 
-<p align="center">
+<p>
   <a href="https://itty.dev/itty-router">
      <img src="https://github.com/kwhitley/itty-router/assets/865416/ed7de66a-b876-46a8-a65f-429dc6d3da20" alt="Itty Router" height="120" />
   </a>
-  <br /><br />
 <p>
 
-<p align="center">
-  <a href="https://npmjs.com/package/itty-router" target="_blank">
-    <img src="https://img.shields.io/npm/v/itty-router.svg?style=flat-square" alt="npm version" />
-  </a>
-  <a href="https://edge.bundlejs.com/?q=itty-router/Router" target="_blank">
-    <img src="https://edge.bundlejs.com/?q=itty-router/Router&badge&badge-style=flat-square" alt="bundle size" />
-  </a>
-  <a href="https://github.com/kwhitley/itty-router/actions/workflows/verify.yml" target="_blank">
-    <img src="https://img.shields.io/github/actions/workflow/status/kwhitley/itty-router/verify.yml?branch=v5.x&style=flat-square" alt="build status" />
-  </a>
-  <a href="https://coveralls.io/github/kwhitley/itty-router?branch=v5.x" target="_blank">
-    <img src="https://img.shields.io/coveralls/github/kwhitley/itty-router/v5.x?style=flat-square" alt="code coverage" />
-  </a>
-  <a href="https://npmjs.com/package/itty-router" target="_blank">
-    <img src="https://img.shields.io/npm/dw/itty-router?style=flat-square" alt="weekly downloads" />
-  </a>
-  <a href="https://github.com/kwhitley/itty-router/issues" target="_blank">
-    <img src="https://img.shields.io/github/issues/kwhitley/itty-router?style=flat-square" alt="open issues" />
-  </a>
-
-  <br />
-
-  <a href="https://discord.gg/53vyrZAu9u" target="_blank">
-    <img src="https://img.shields.io/discord/832353585802903572?label=Discord&logo=Discord&style=flat-square&logoColor=fff" alt="join us on discord" />
-  </a>
-  <a href="https://github.com/kwhitley/itty-router" target="_blank">
-    <img src="https://img.shields.io/github/stars/kwhitley/itty-router?style=social" alt="Repo stars" />
-  </a>
-  <a href="https://www.twitter.com/ittydev" target="_blank">
-    <img src="https://img.shields.io/twitter/follow/ittydev.svg?style=social&label=Follow" alt="Follow ittydev" />
-  </a>
-</p>
+[![Version](https://img.shields.io/npm/v/itty-router.svg?style=flat-square)](https://npmjs.com/package/itty-router)
+[![Bundle Size](https://deno.bundlejs.com/?q=itty-router/Router&badge&badge-style=flat-square)](https://deno.bundlejs.com/?q=itty-router)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/kwhitley/itty-router/verify.yml?style=flat-square)](https://coveralls.io/github/kwhitley/itty-router)
+[![Coverage](https://img.shields.io/coveralls/github/kwhitley/itty-router?style=flat-square)](https://coveralls.io/github/kwhitley/itty-router)
+[![Downloads](https://img.shields.io/npm/dw/itty-router?style=flat-square)](https://npmjs.com/package/itty-router)
+[![Issues](https://img.shields.io/github/issues/kwhitley/itty-router?style=flat-square)](https://coveralls.io/github/kwhitley/itty-router)
+[![Discord](https://img.shields.io/discord/832353585802903572?label=Discord&logo=Discord&style=flat-square&logoColor=fff)](https://discord.gg/53vyrZAu9u)
+[![Github](https://img.shields.io/github/stars/kwhitley/itty-router?style=social)](https://github.com/kwhitley/itty-router)
+[![Follow @ittydev](https://img.shields.io/twitter/follow/ittydev.svg?style=social&label=Follow)](https://www.twitter.com/ittydev)
 
 ###  [v5 Documentation](https://itty.dev/itty-router) &nbsp;| &nbsp; [v4 -> v5 Migration Guide](https://itty.dev/itty-router/migrations/v4-v5) &nbsp;| &nbsp; [Discord](https://discord.gg/53vyrZAu9u) 
 
