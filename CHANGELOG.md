@@ -1,4 +1,6 @@
 ## Changelog
+#### v5.0.17
+  - fixed: corsify should clone response before appending headers
 #### v5.0.16
   - maintenance: README
 #### v5.0.15

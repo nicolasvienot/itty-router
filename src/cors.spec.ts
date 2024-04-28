@@ -275,6 +275,13 @@ describe('cors(options?: CorsOptions)', () => {
         expect(afterCorsify.headers.get('access-control-allow-origin')).toBeNull()
         expect(afterCorsify.status).toBe(101)
       })
+
+      it('clones the response', async () => {
+        const { corsify } = cors()
+        const originalResponse = new Response(null)
+        const corsified = corsify(originalResponse)
+        expect(originalResponse).not.toBe(corsified)
+      })
     })
   })
 })
