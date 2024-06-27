@@ -78,7 +78,13 @@ export const cors = (options: CorsOptions = {}) => {
       || response.status == 101
     ) return response
 
-    return appendHeadersAndReturn(response.clone(), {
+    const responseCopy = new Response(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers,
+    })
+
+    return appendHeadersAndReturn(responseCopy, {
       'access-control-allow-origin': getAccessControlOrigin(request),
       'access-control-allow-credentials': credentials,
     })
